@@ -3,8 +3,9 @@ package tool
 import (
 	"errors"
 	"fmt"
-	"github.com/dgrijalva/jwt-go"
 	"time"
+
+	"github.com/dgrijalva/jwt-go"
 )
 
 var secretKey = "dsfhw&*kjahsd"
@@ -41,7 +42,7 @@ func ParseToken(tokenStr string) (interface{}, error) {
 	}
 
 	if value, ok := token.Claims.(jwt.MapClaims); ok {
-		vlu, isOk := value["exp"].(int64)
+		vlu, isOk := value["exp"].(float64)
 		if !isOk {
 			return nil, errors.New("parse token error : invalid exp date")
 		}
