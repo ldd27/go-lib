@@ -14,10 +14,10 @@ func SetTokenSecretKey(i string) {
 	secretKey = i
 }
 
-func GenToken(i interface{}, exp int64) (string, error) {
+func GenToken(i interface{}) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"data": i,
-		"exp":  exp,
+		"exp":  time.Now().UnixNano(),
 	})
 
 	return token.SignedString([]byte(secretKey))
@@ -42,13 +42,13 @@ func ParseToken(tokenStr string) (interface{}, error) {
 	}
 
 	if value, ok := token.Claims.(jwt.MapClaims); ok {
-		vlu, isOk := value["exp"].(float64)
-		if !isOk {
-			return nil, errors.New("parse token error : invalid exp date")
-		}
-		if int64(vlu) < time.Now().Unix() {
-			return nil, errors.New("parse token error : token expired")
-		}
+		//vlu, isOk := value["exp"].(float64)
+		//if !isOk {
+		//	return nil, errors.New("parse token error : invalid exp date")
+		//}
+		//if int64(vlu) < time.Now().Unix() {
+		//	return nil, errors.New("parse token error : token expired")
+		//}
 		return value["data"], nil
 	} else {
 		return nil, errors.New("parse token error : invalid token data")
