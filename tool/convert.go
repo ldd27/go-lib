@@ -1,6 +1,7 @@
 package tool
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 	"time"
@@ -12,6 +13,8 @@ func ToString(s interface{}) string {
 		return strconv.Itoa(vlu)
 	case int64:
 		return strconv.FormatInt(vlu, 10)
+	case float64:
+		return fmt.Sprintf("%g", s)
 	case string:
 		return vlu
 	}
