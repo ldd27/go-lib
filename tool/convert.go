@@ -23,6 +23,7 @@ func ToString(s interface{}) string {
 
 func StrToTime(s string, format string) time.Time {
 	tempFormat := strings.Replace(format, "yyyy", "2006", -1)
+	tempFormat = strings.Replace(format, "yy", "06", -1)
 	tempFormat = strings.Replace(tempFormat, "MM", "01", -1)
 	tempFormat = strings.Replace(tempFormat, "dd", "02", -1)
 	tempFormat = strings.Replace(tempFormat, "HH", "15", -1)
@@ -35,6 +36,7 @@ func StrToTime(s string, format string) time.Time {
 
 func TimeToStr(t time.Time, format string) string {
 	tempFormat := strings.Replace(format, "yyyy", "2006", -1)
+	tempFormat = strings.Replace(tempFormat, "yy", "06", -1)
 	tempFormat = strings.Replace(tempFormat, "MM", "01", -1)
 	tempFormat = strings.Replace(tempFormat, "dd", "02", -1)
 	tempFormat = strings.Replace(tempFormat, "HH", "15", -1)
