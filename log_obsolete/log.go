@@ -1,8 +1,8 @@
-package log
+package log_obsolete
 
 import (
-	"github.com/ddliao/go-lib/log/gogs_log"
 	"fmt"
+	"github.com/ddliao/go-lib/log/gogs_log"
 	"os"
 	"strings"
 )
