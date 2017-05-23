@@ -11,7 +11,9 @@ import (
 var secretKey = "dsfhw&*kjahsd"
 
 func SetTokenSecretKey(i string) {
-	secretKey = i
+	if i != "" {
+		secretKey = i
+	}
 }
 
 func GenToken(i interface{}) (string, error) {
