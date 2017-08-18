@@ -5,6 +5,8 @@ import (
 	"crypto/sha1"
 	"fmt"
 	"io"
+	"math/rand"
+	"time"
 )
 
 func MD5(s string) string {
@@ -22,4 +24,16 @@ func SHA1(s string) string {
 	bs := h.Sum(nil)
 	//SHA1 值经常以 16 进制输出，例如在 git commit 中。使用%x 来将散列结果格式化为 16 进制字符串。
 	return fmt.Sprintf("%x", bs)
+}
+
+//生成随机字符串
+func GetRandomString(length int) string {
+	str := "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	bytes := []byte(str)
+	result := []byte{}
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	for i := 0; i < length; i++ {
+		result = append(result, bytes[r.Intn(len(bytes))])
+	}
+	return string(result)
 }

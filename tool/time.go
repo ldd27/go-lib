@@ -121,3 +121,7 @@ func FirstDayOfMonth(t time.Time) time.Time {
 func FirstDayOfYear(t time.Time) time.Time {
 	return time.Date(t.Year(), 1, 1, 0, 0, 0, 0, t.Location())
 }
+
+func TimeStamp_Seconds() int64 {
+	return time.Now().UnixNano() / 1000000000
+}
