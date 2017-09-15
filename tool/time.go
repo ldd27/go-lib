@@ -125,3 +125,8 @@ func FirstDayOfYear(t time.Time) time.Time {
 func TimeStamp_Seconds() int64 {
 	return time.Now().UnixNano() / 1000000000
 }
+
+// Format TimeStamp int64 to time
+func TimeStamp_Sec2Time(ti int64) time.Time {
+	return time.Unix(ti, 0)
+}

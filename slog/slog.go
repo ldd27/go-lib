@@ -88,6 +88,7 @@ func Errorf(addCallDepth int, v ...interface{}) {
 	if len(v) == 0 {
 		return
 	}
+
 	if v[0] == nil {
 		return
 	}
