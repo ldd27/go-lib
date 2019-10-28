@@ -132,10 +132,10 @@ func InitLog(opts ...func(*Option)) error {
 	logger = zap.New(core, zap.AddCaller(), caller, filed)
 	sugar = logger.Sugar()
 
-	goaLogger = &GoaLogger{sugar}
-
 	publicLogger = zap.New(core, zap.AddCaller(), filed)
 	publicSugar = logger.Sugar()
+
+	goaLogger = &GoaLogger{publicSugar}
 
 	return nil
 }
