@@ -5,11 +5,11 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/ldd27/go-lib/zaplog"
+
 	"github.com/goadesign/goa"
-	goalogrus "github.com/goadesign/goa/logging/logrus"
 	"github.com/goadesign/goa/middleware"
 	"github.com/goadesign/goa/middleware/gzip"
-	"github.com/sirupsen/logrus"
 )
 
 type JwtConfig struct {
@@ -25,7 +25,7 @@ type LogRequestConfig struct {
 type Option struct {
 	Debug       bool
 	ServiceName string
-	Log         *logrus.Logger
+	Log         *zaplog.GoaLogger
 
 	// middleware
 	EnableRequestID    bool
@@ -64,7 +64,7 @@ func NewGOA(opts ...func(*Option)) (*goa.Service, error) {
 	service := goa.New(conf.ServiceName)
 
 	if conf.Log != nil {
-		service.WithLogger(goalogrus.New(conf.Log))
+		service.WithLogger(conf.Log)
 	}
 
 	// middleware
