@@ -73,11 +73,11 @@ func InitLog(opts ...func(*Option)) error {
 	var fileLogger *lumberjack.Logger
 	if opt.FileOption.FileName != "" {
 		fileLogger = &lumberjack.Logger{
-			Filename:   opt.FileOption.FileName, // 日志文件路径
-			MaxSize:    1,                       // 每个日志文件保存的最大尺寸 单位：M
-			MaxBackups: 5,                       // 日志文件最多保存多少个备份
-			MaxAge:     7,                       // 文件最多保存多少天
-			//Compress:   true,                    // 是否压缩
+			Filename:   opt.FileOption.FileName,   // 日志文件路径
+			MaxSize:    opt.FileOption.MaxSize,    // 每个日志文件保存的最大尺寸 单位：M
+			MaxBackups: opt.FileOption.MaxBackups, // 日志文件最多保存多少个备份
+			MaxAge:     opt.FileOption.MaxAge,     // 文件最多保存多少天
+			Compress:   opt.FileOption.Compress,   // 是否压缩
 		}
 		RegisterRolling(opt, fileLogger)
 	}
