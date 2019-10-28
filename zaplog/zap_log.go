@@ -35,11 +35,13 @@ type FileOption struct {
 type Option struct {
 	Level      zapcore.Level
 	InitField  []zap.Field
+	EncodeType string // text || json
 	FileOption FileOption
 }
 
 var defaultOption = Option{
-	Level: zap.DebugLevel,
+	EncodeType: "text",
+	Level:      zap.DebugLevel,
 	FileOption: FileOption{
 		RollingPattern: "0 0 0 * * *",
 		MaxSize:        100,
@@ -107,11 +109,20 @@ func InitLog(opts ...func(*Option)) error {
 		writer = zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stderr), zapcore.AddSync(fileLogger))
 	}
 
-	core := zapcore.NewCore(
-		zapcore.NewJSONEncoder(encoderConfig), // 编码器配置
-		writer,                                // 打印到控制台和文件
-		atomicLevel,                           // 日志级别
-	)
+	var core zapcore.Core
+	if opt.EncodeType == "json" {
+		core = zapcore.NewCore(
+			zapcore.NewJSONEncoder(encoderConfig), // 编码器配置
+			writer,                                // 打印到控制台和文件
+			atomicLevel,                           // 日志级别
+		)
+	} else {
+		core = zapcore.NewCore(
+			zapcore.NewConsoleEncoder(encoderConfig), // 编码器配置
+			writer,                                   // 打印到控制台和文件
+			atomicLevel,                              // 日志级别
+		)
+	}
 
 	// 开启开发模式，堆栈跟踪
 	caller := zap.AddCallerSkip(1)
