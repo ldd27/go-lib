@@ -17,4 +17,6 @@ func TestLog(t *testing.T) {
 	WithField(zap.String("xx", "dd")).Info("4444")
 	GoaLog().Info("xx", "ctrl", "Swagger", "files", "public/swagger/swagger.json", "route", "GET /swagger.json")
 	SugarLogger().Infow("xx", "ctrl", "Swagger", "files", "public/swagger/swagger.json", "route", "GET /swagger.json")
+
+	GoaLog().Print("xxx", "ddd")
 }

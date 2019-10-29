@@ -25,7 +25,7 @@ type LogRequestConfig struct {
 type Option struct {
 	Debug       bool
 	ServiceName string
-	Log         *zaplog.GoaLogger
+	Log         *zaplog.LoggerExtend
 
 	// middleware
 	EnableRequestID    bool

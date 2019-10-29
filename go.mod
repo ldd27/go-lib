@@ -17,10 +17,10 @@ require (
 	github.com/futurenda/gomail v0.0.0-20170227154719-1854e8ff3f9a // indirect
 	github.com/go-kit/kit v0.9.0 // indirect
 	github.com/go-logfmt/logfmt v0.4.0 // indirect
-	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/goadesign/goa v1.4.2
 	github.com/gofrs/uuid v3.2.0+incompatible // indirect
 	github.com/inconshreveable/log15 v0.0.0-20180818164646-67afb5ed74ec // indirect
+	github.com/jinzhu/gorm v1.9.11 // indirect
 	github.com/jinzhu/now v1.0.1
 	github.com/json-iterator/go v1.1.7
 	github.com/manveru/faker v0.0.0-20171103152722-9fbc68a78c4d // indirect
