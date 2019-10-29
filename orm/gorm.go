@@ -16,7 +16,7 @@ type Option struct {
 	ConnMaxLifetime     time.Duration
 	MaxIdleConns        int
 	MaxOpenConns        int
-	Log                 *zaplog.LoggerExtend
+	Log                 *zaplog.ExtendLogger
 }
 
 var defaultGORMConf = Option{

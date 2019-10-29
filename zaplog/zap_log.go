@@ -20,7 +20,7 @@ var (
 	publicLogger *zap.Logger
 	publicSugar  *zap.SugaredLogger
 
-	goaLogger *LoggerExtend
+	extendLogger *ExtendLogger
 )
 
 type FileOption struct {
@@ -138,7 +138,7 @@ func InitLog(opts ...func(*Option)) error {
 	publicLogger = zap.New(core, zap.AddCaller(), filed)
 	publicSugar = logger.Sugar()
 
-	goaLogger = &LoggerExtend{publicSugar}
+	extendLogger = &ExtendLogger{publicSugar}
 
 	return nil
 }
@@ -155,8 +155,8 @@ func SugarLogger() *zap.SugaredLogger {
 	return publicSugar
 }
 
-func GoaLog() *LoggerExtend {
-	return goaLogger
+func GetExtendLogger() *ExtendLogger {
+	return extendLogger
 }
 
 func Debug(msg string, fields ...zap.Field) {
