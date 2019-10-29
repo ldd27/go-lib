@@ -18,7 +18,7 @@ require (
 	github.com/go-kit/kit v0.9.0 // indirect
 	github.com/go-logfmt/logfmt v0.4.0 // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
-	github.com/goadesign/goa v1.4.2 // indirect
+	github.com/goadesign/goa v1.4.2
 	github.com/gofrs/uuid v3.2.0+incompatible // indirect
 	github.com/inconshreveable/log15 v0.0.0-20180818164646-67afb5ed74ec // indirect
 	github.com/jinzhu/now v1.0.1

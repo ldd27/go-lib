@@ -13,7 +13,7 @@ func (r *GoaLogger) New(keyvals ...interface{}) goa.LogAdapter {
 	if r.SugaredLogger == nil {
 		return r
 	}
-	r.SugaredLogger.With(keyvals)
+	r.SugaredLogger.With(keyvals...)
 	return r
 }
 
@@ -21,12 +21,12 @@ func (r *GoaLogger) Info(msg string, keyvals ...interface{}) {
 	if r.SugaredLogger == nil {
 		return
 	}
-	r.SugaredLogger.Infow(msg, keyvals)
+	r.SugaredLogger.Infow(msg, keyvals...)
 }
 
 func (r *GoaLogger) Error(msg string, keyvals ...interface{}) {
 	if r.SugaredLogger == nil {
 		return
 	}
-	r.SugaredLogger.Errorw(msg, keyvals)
+	r.SugaredLogger.Errorw(msg, keyvals...)
 }
