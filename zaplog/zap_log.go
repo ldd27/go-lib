@@ -33,15 +33,17 @@ type FileOption struct {
 }
 
 type Option struct {
-	Level      zapcore.Level
-	InitField  []zap.Field
-	EncodeType string // text || json
-	FileOption FileOption
+	Level        zapcore.Level
+	InitField    []zap.Field
+	EncodeType   string // text || json
+	LevelEncoder zapcore.LevelEncoder
+	FileOption   FileOption
 }
 
 var defaultOption = Option{
-	EncodeType: "text",
-	Level:      zap.DebugLevel,
+	EncodeType:   "text",
+	Level:        zap.DebugLevel,
+	LevelEncoder: zapcore.CapitalColorLevelEncoder,
 	FileOption: FileOption{
 		RollingPattern: "0 0 0 * * *",
 		MaxSize:        100,
@@ -87,14 +89,15 @@ func InitLog(opts ...func(*Option)) error {
 	}
 
 	encoderConfig := zapcore.EncoderConfig{
-		TimeKey:        "time",
-		LevelKey:       "level",
-		NameKey:        "logger",
-		CallerKey:      "caller",
-		MessageKey:     "msg",
-		StacktraceKey:  "stack",
-		LineEnding:     zapcore.DefaultLineEnding,
-		EncodeLevel:    zapcore.CapitalLevelEncoder,
+		TimeKey:       "time",
+		LevelKey:      "level",
+		NameKey:       "logger",
+		CallerKey:     "caller",
+		MessageKey:    "msg",
+		StacktraceKey: "stack",
+		LineEnding:    zapcore.DefaultLineEnding,
+		//EncodeLevel:    zapcore.CapitalLevelEncoder,
+		EncodeLevel:    opt.LevelEncoder,
 		EncodeTime:     TimeEncoder,
 		EncodeDuration: zapcore.StringDurationEncoder,
 		EncodeCaller:   zapcore.ShortCallerEncoder, // 全路径编码器
@@ -141,7 +144,7 @@ func InitLog(opts ...func(*Option)) error {
 }
 
 func TimeEncoder(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
-	enc.AppendString(t.Format("01-02 15:04:05.0000"))
+	enc.AppendString(t.Format("2006-01-02 15:04:05.0000"))
 }
 
 func Logger() *zap.Logger {
