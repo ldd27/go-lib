@@ -17,6 +17,7 @@ require (
 	github.com/futurenda/gomail v0.0.0-20170227154719-1854e8ff3f9a // indirect
 	github.com/go-kit/kit v0.9.0 // indirect
 	github.com/go-logfmt/logfmt v0.4.0 // indirect
+	github.com/go-redis/redis_rate v6.5.0+incompatible // indirect
 	github.com/goadesign/goa v1.4.2
 	github.com/gofrs/uuid v3.2.0+incompatible // indirect
 	github.com/inconshreveable/log15 v0.0.0-20180818164646-67afb5ed74ec // indirect
